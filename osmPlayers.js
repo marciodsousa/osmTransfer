@@ -52,11 +52,11 @@ function createCell(cellPercent, cellProfit, cellDifference, text, style, player
 	cellDifference.setAttribute('class', 'right');
 	cellDifference.appendChild(divDifference);
 	if (difference > 0){
-	   cellDifference.setAttribute('style','color:#B40000');
-	   cellDifference.appendChild(createArrows(-1));
-    }else if(difference < 0){
 	   cellDifference.setAttribute('style','color:#009033');
 	   cellDifference.appendChild(createArrows(1));
+    }else if(difference < 0){
+	   cellDifference.setAttribute('style','color:#B40000');
+	   cellDifference.appendChild(createArrows(-1));
     }
 }
 
@@ -69,14 +69,10 @@ function formatValueToMath(value) {
 }
 
 function formatValueToShow(value) {
-	var size = value.length,
-		finalValue = '';
-
-	finalValue = '.' + value.substr(size - 3, 3) + ' €';
-	finalValue = '.' + value.substr(size - 6, 3) + finalValue;
-	finalValue = value.substr(0, size - 6) + finalValue;
-	return finalValue;
+	var finalValue = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return finalValue + " €";
 }
+
 function go(){
 	var tbl  =  document.getElementById("tableTransfer"),
 	playerId;
@@ -152,7 +148,10 @@ function getRealValue(playerId){
 }
 
 function calculatePercentage(sellValue, realValue) {
-	var p = ((sellValue.valueOf()/realValue.valueOf())*100).toFixed(0);
+	var p  =  ((sellValue.valueOf()/realValue.valueOf())*100).toFixed(0);
+	
+	//console.log(sellValue + "||" + realValue);
+	//console.log(p);
 	
 	return ( isNaN(p) ? "" : p);
 }
@@ -160,24 +159,24 @@ function calculatePercentage(sellValue, realValue) {
 function calculatePotentialProfit(realValue, sellValue) {
 	var p = ((realValue.valueOf() * 2.4) - sellValue.valueOf()).toFixed(0);
 	
+	//console.log(sellValue + "||" + realValue);
+	//console.log(p);
+	
 	return ( isNaN(p) ? "" : p);
 }
 
 function createArrows(direction) {
-	var div = document.createElement('div');
-
+	var txt;
 	switch (direction){
 	    case 1:
-	       div.setAttribute('class', 'divRankContainerUp divRankContainer float-right');
-	       div.setAttribute('title', '20 ? 18');
+	       txt = document.createTextNode('?');
 	       break;
 	    case -1:
-	       div.setAttribute('class', 'divRankContainerDown divRankContainer float-right');
-	       div.setAttribute('title', '13 ? 17');
+	       txt = document.createTextNode('?');
 	       break;
 	}
 
-	return div;
+	return txt;
 }
 
 go();
