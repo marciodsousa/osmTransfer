@@ -1,4 +1,4 @@
-var locale = window.location.host.split(".")[0],
+ï»¿var locale = window.location.host.split(".")[0],
 	OPTIMAL_PERCENT = 150,
 	OPTIMAL_PROFIT = 50;
 
@@ -61,7 +61,7 @@ function createCell(cellPercent, cellProfit, cellDifference, text, style, player
 }
 
 function formatValueToMath(value) {
-	value = value.replace(/\€/g, "");
+	value = value.replace(/\â‚¬/g, "");
 	value = value.replace(/\./g, "");
 	value = value.replace(/\,/g, "");
 	
@@ -70,7 +70,7 @@ function formatValueToMath(value) {
 
 function formatValueToShow(value) {
 	var finalValue = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    return finalValue + " €";
+    return finalValue + " â‚¬";
 }
 
 function go(){
@@ -90,7 +90,7 @@ function go(){
 		tbl.rows[0].appendChild(th);
 
 		th = document.createElement('th');
-		th.innerHTML = "Variação";
+		th.innerHTML = "VariaÃ§Ã£o";
 		th.setAttribute('class', 'right rightSide header');
 		tbl.rows[0].appendChild(th);
 
@@ -163,10 +163,10 @@ function createArrows(direction) {
 	var txt;
 	switch (direction){
 	    case 1:
-	       txt = document.createTextNode('?');
+	       txt = document.createTextNode('â–¼');
 	       break;
 	    case -1:
-	       txt = document.createTextNode('?');
+	       txt = document.createTextNode('â–²');
 	       break;
 	}
 
