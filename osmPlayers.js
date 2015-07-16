@@ -72,6 +72,7 @@ function formatValueToShow(value) {
 	var finalValue = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     return finalValue + " €";
 }
+//teste
 
 function go(){
 	var tbl  =  document.getElementById("tableTransfer"),
