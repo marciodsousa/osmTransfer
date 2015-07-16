@@ -150,17 +150,11 @@ function getRealValue(playerId){
 function calculatePercentage(sellValue, realValue) {
 	var p  =  ((sellValue.valueOf()/realValue.valueOf())*100).toFixed(0);
 	
-	//console.log(sellValue + "||" + realValue);
-	//console.log(p);
-	
 	return ( isNaN(p) ? "" : p);
 }
 
 function calculatePotentialProfit(realValue, sellValue) {
 	var p = ((realValue.valueOf() * 2.4) - sellValue.valueOf()).toFixed(0);
-	
-	//console.log(sellValue + "||" + realValue);
-	//console.log(p);
 	
 	return ( isNaN(p) ? "" : p);
 }
